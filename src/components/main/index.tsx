@@ -1,9 +1,10 @@
 import * as S from "./styles";
+import Card from "../cardList/Card";
 
 export default function Main() {
   return (
     <S.Main>
-      <S.Title>Green Acesso</S.Title>
+      <Card />
     </S.Main>
   );
 }
