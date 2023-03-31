@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Input = styled.input`
+const Input = styled.input`
   border-radius: 50px;
   border: 1px solid #ababab;
   height: 25px;
@@ -29,6 +29,7 @@ export const Input = styled.input`
     font-size: 16px;
   }
 `;
+export default Input;
 
 export const Wrapper = styled.div`
   display: flex;

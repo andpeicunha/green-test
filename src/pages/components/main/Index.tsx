@@ -1,10 +1,10 @@
-import * as S from "./Styles";
+import MainCont from "./Styles";
 import Card from "../card/Card";
 
 export default function Main() {
   return (
-    <S.Main>
+    <MainCont>
       <Card />
-    </S.Main>
+    </MainCont>
   );
 }

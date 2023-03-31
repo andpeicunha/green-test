@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import * as S from "./Styles";
+import Input, { Wrapper } from "./Styles";
 
 export default function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon }: any) {
   function handleClickFavorite() {
@@ -14,8 +14,8 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
   }
 
   return (
-    <S.Wrapper id="grid-1">
-      <S.Input placeholder="Pesquise pelo nome" type="text" onChange={handleChange} disabled={typeIcon} />
+    <Wrapper id="grid-1">
+      <Input placeholder="Pesquise pelo nome" type="text" onChange={handleChange} disabled={typeIcon} />
       <motion.img
         className="filter-icon"
         src={typeIcon ? "/img/filterFavorClean.png" : "/img/filterFavor.png"}
@@ -28,6 +28,6 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       />
-    </S.Wrapper>
+    </Wrapper>
   );
 }

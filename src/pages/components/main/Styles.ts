@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
+const MainCont = styled.div`
   display: grid;
   grid-template-columns: 49% 49%;
   grid-column-gap: 2px;
@@ -25,3 +25,4 @@ export const Main = styled.div`
     }
   }
 `;
+export default MainCont;
