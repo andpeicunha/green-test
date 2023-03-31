@@ -1,5 +1,5 @@
-import * as S from "./styles";
-import Card from "../cardList/Card";
+import * as S from "./Styles";
+import Card from "../card/Card";
 
 export default function Main() {
   return (
