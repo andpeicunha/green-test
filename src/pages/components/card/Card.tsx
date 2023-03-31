@@ -17,6 +17,8 @@ export default function Card() {
   const [favoritePersona, setFavoritePersona] = useState<IFavoritePersona[]>([]);
   const [errorMessageSearch, setErrorMessageSearch] = useState("");
   const [favoritePersonaFilter, setFavoritePersonaFilter] = useState("");
+  const [filterOn, setFilterOn] = useState(false);
+  const [typingTimeout, setTypingTimeout] = useState<any>();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -35,7 +37,6 @@ export default function Card() {
     } else {
       url += `?name=${searchValue}&page=${pageParam}`;
     }
-    console.log(url);
     return url;
   };
 
@@ -74,12 +75,23 @@ export default function Card() {
   );
 
   const handleSearchChange = (value: any) => {
-    setSearchValue(value);
+    clearTimeout(typingTimeout);
+
+    setTypingTimeout(
+      setTimeout(() => {
+        setSearchValue(value);
+      }, 500)
+    );
   };
 
   const handleButtonFilterFavorite = () => {
-    const joinFavoriteFilter = favoritePersona.map((obj) => obj.id).join(",");
-    setFavoritePersonaFilter(joinFavoriteFilter);
+    if (filterOn) {
+      setFavoritePersonaFilter("");
+      setFilterOn(false);
+    } else {
+      setFavoritePersonaFilter(favoritePersona.map((obj) => obj.id).join(","));
+      setFilterOn(true);
+    }
   };
 
   function handleClickDetailsPersona(id: string, status: boolean) {
@@ -91,21 +103,34 @@ export default function Card() {
       localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
     }
   }
-  console.log(data);
   return (
     <>
       <S.StyledImage id="grid-1">
         <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
       </S.StyledImage>
 
-      <SearchInput onVariableChange={handleSearchChange} filterFavoritePersona={handleButtonFilterFavorite} />
+      <SearchInput
+        onVariableChange={handleSearchChange}
+        filterFavoritePersona={handleButtonFilterFavorite}
+        typeIcon={filterOn}
+      />
 
-      {isLoading && <S.ErrorMsg id="grid-1">Buscando Personagens...</S.ErrorMsg>}
-      {favoritePersonaFilter && <S.ErrorMsg id="grid-1">Esses são seus personagens marcados como favoritos</S.ErrorMsg>}
+      {isLoading && (
+        <S.ErrorMsg className="search" id="grid-1">
+          Buscando Personagens...
+        </S.ErrorMsg>
+      )}
+      {favoritePersonaFilter && (
+        <S.ErrorMsg className="filter" id="grid-1">
+          Esses são seus personagens marcados como favoritos
+        </S.ErrorMsg>
+      )}
 
       {errorMessageSearch !== "" ? (
         <>
-          <S.ErrorMsg id="grid-1">{errorMessageSearch}</S.ErrorMsg>
+          <S.ErrorMsg className="error" id="grid-1">
+            {errorMessageSearch}
+          </S.ErrorMsg>
         </>
       ) : (
         data &&

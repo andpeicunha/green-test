@@ -103,6 +103,18 @@ export const ErrorMsg = styled.div`
   align-items: center;
   font-family: "Roboto Condensed";
   font-size: 1.5rem;
+
+  &.search {
+    font-size: 1.9rem !important;
+  }
+  &.filter {
+    font-weight: 700;
+    font-size: 1.7rem !important;
+  }
+  &.error {
+    font-size: 1.8rem !important;
+    color: red;
+  }
 `;
 
 export const StyledImage = styled.div`

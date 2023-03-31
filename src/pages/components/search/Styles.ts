@@ -6,13 +6,19 @@ export const Input = styled.input`
   height: 25px;
   width: 75%;
   margin: 12px 0%;
-  padding: 5px 10px;
+  padding: 5px 18px;
   font-size: 14px;
+
+  :disabled {
+    opacity: 0.6;
+    background-color: #d9d9d9;
+  }
 
   ::placeholder {
     color: #ababab;
     text-transform: uppercase;
     font-size: 12px;
+    padding-left: 10px;
   }
 
   &:focus::placeholder {
@@ -31,8 +37,8 @@ export const Wrapper = styled.div`
 
   img {
     position: relative;
-    top: 12px;
-    left: 0px;
+    top: 9px;
+    left: -10px;
     cursor: pointer;
   }
 `;
