@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardMain = styled.div`
+const CardMain = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,6 +17,7 @@ export const CardMain = styled.div`
     width: 99%;
   }
 `;
+export default CardMain;
 
 export const CardText = styled.div`
   position: relative;
@@ -30,7 +31,6 @@ export const CardText = styled.div`
   height: 70px;
   box-shadow: 0px 1px 7px 1px rgba(150, 150, 150, 0.3);
 `;
-
 export const CardName = styled.div`
   display: flex;
   justify-content: center;

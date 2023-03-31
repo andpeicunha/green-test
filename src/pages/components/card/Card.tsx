@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
-import * as S from "./Styles";
+import CardMain, { CardText, CardBt, CardLocation, CardName, ErrorMsg, FavBt, StyledImage } from "./Styles";
 import SearchInput from "../search/SearchInput";
 import StarIcon from "../../../../public/img/star";
 
@@ -105,9 +105,9 @@ export default function Card() {
   }
   return (
     <>
-      <S.StyledImage id="grid-1">
+      <StyledImage id="grid-1">
         <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
-      </S.StyledImage>
+      </StyledImage>
 
       <SearchInput
         onVariableChange={handleSearchChange}
@@ -116,51 +116,51 @@ export default function Card() {
       />
 
       {isLoading && (
-        <S.ErrorMsg className="search" id="grid-1">
+        <ErrorMsg className="search" id="grid-1">
           Buscando Personagens...
-        </S.ErrorMsg>
+        </ErrorMsg>
       )}
       {favoritePersonaFilter && (
-        <S.ErrorMsg className="filter" id="grid-1">
+        <ErrorMsg className="filter" id="grid-1">
           Esses são seus personagens marcados como favoritos
-        </S.ErrorMsg>
+        </ErrorMsg>
       )}
 
       {errorMessageSearch !== "" ? (
         <>
-          <S.ErrorMsg className="error" id="grid-1">
+          <ErrorMsg className="error" id="grid-1">
             {errorMessageSearch}
-          </S.ErrorMsg>
+          </ErrorMsg>
         </>
       ) : (
         data &&
         data.pages &&
         data.pages.map((page) =>
           (page.results ? page.results : page)?.map((d: any) => (
-            <S.CardMain key={d.id}>
+            <CardMain key={d.id}>
               <Link href={`/components/details/Details?id=${d.id}`}>
                 <Image src={d.image} height={200} width={200} alt={d.name} priority />
-                <S.CardText>
-                  <S.CardName>{d.name.split(" ").slice(0, 2).join(" ")}</S.CardName>
-                  <S.CardLocation>{d.location.name}</S.CardLocation>
-                </S.CardText>
+                <CardText>
+                  <CardName>{d.name.split(" ").slice(0, 2).join(" ")}</CardName>
+                  <CardLocation>{d.location.name}</CardLocation>
+                </CardText>
               </Link>
 
-              <S.FavBt
+              <FavBt
                 onClick={() => handleClickDetailsPersona(d.id, true)}
                 className={favoritePersona.find((p: any) => p.id === d.id && p.status) ? "active" : ""}
               >
                 <StarIcon />
-              </S.FavBt>
-            </S.CardMain>
+              </FavBt>
+            </CardMain>
           ))
         )
       )}
 
       {hasNextPage && (
-        <S.CardBt id="grid-1" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+        <CardBt id="grid-1" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
           Mostrar Mais Personagens
-        </S.CardBt>
+        </CardBt>
       )}
     </>
   );
