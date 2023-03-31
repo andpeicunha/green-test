@@ -6,7 +6,6 @@ export const CardMain = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px 15px 0px;
-  background-color: none;
   cursor: pointer;
   border: 0px solid red;
 
@@ -14,7 +13,7 @@ export const CardMain = styled.div`
     border-radius: 20px 20px 0px 0px;
     padding: 5px 5px 0px 5px;
     margin-bottom: -6px;
-    height: 99%;
+    height: 68%;
     width: 99%;
   }
 `;
@@ -77,24 +76,23 @@ export const CardBt = styled.button`
 export const FavBt = styled.button`
   position: relative;
   border: none;
-  top: 2px;
-  left: 42%;
-  z-index: 50;
+  top: 2.5px;
+  left: 45%;
+  z-index: 100;
   background-color: transparent;
 
-  svg {
-    cursor: pointer;
-    height: 18px;
-  }
   svg path {
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    border: 8px solid transparent;
     fill: gray !important;
   }
   svg path:hover {
     fill: yellow !important;
   }
   &.active path {
-    background-color: red;
-    fill: yellow !important;
+    fill: #00e692 !important;
   }
 `;
 

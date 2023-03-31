@@ -16,6 +16,7 @@ export default function Card() {
   const [searchValue, setSearchValue] = useState("");
   const [favoritePersona, setFavoritePersona] = useState<IFavoritePersona[]>([]);
   const [errorMessageSearch, setErrorMessageSearch] = useState("");
+  const [favoritePersonaFilter, setFavoritePersonaFilter] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -27,11 +28,23 @@ export default function Card() {
     }
   }, []);
 
+  const getBuildUrlSearch = (searchValue: any, searchStringFavPersona: any, pageParam: any) => {
+    let url = "https://rickandmortyapi.com/api/character";
+    if (favoritePersonaFilter) {
+      url += `/${searchStringFavPersona}`;
+    } else {
+      url += `?name=${searchValue}&page=${pageParam}`;
+    }
+    console.log(url);
+    return url;
+  };
+
   const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, error } = useInfiniteQuery(
-    ["RickAndMorty", searchValue],
+    ["RickAndMorty", favoritePersonaFilter, searchValue],
     async ({ pageParam = 1 }) => {
       try {
-        const res = await fetch(`https://rickandmortyapi.com/api/character?page=${pageParam}&name=${searchValue}`);
+        const url = getBuildUrlSearch(searchValue, favoritePersonaFilter, pageParam);
+        const res = await fetch(`${url}`);
         if (res.ok) {
           setErrorMessageSearch("");
           return res.json();
@@ -64,7 +77,12 @@ export default function Card() {
     setSearchValue(value);
   };
 
-  function handleClick(id: string, status: boolean) {
+  const handleButtonFilterFavorite = () => {
+    const joinFavoriteFilter = favoritePersona.map((obj) => obj.id).join(",");
+    setFavoritePersonaFilter(joinFavoriteFilter);
+  };
+
+  function handleClickDetailsPersona(id: string, status: boolean) {
     const newFavoritePersona = { id, status };
 
     if (!favoritePersona.some((p: any) => p.id === id)) {
@@ -73,15 +91,17 @@ export default function Card() {
       localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
     }
   }
-
+  console.log(data);
   return (
     <>
       <S.StyledImage id="grid-1">
         <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
       </S.StyledImage>
 
-      <SearchInput onVariableChange={handleSearchChange} />
+      <SearchInput onVariableChange={handleSearchChange} filterFavoritePersona={handleButtonFilterFavorite} />
+
       {isLoading && <S.ErrorMsg id="grid-1">Buscando Personagens...</S.ErrorMsg>}
+      {favoritePersonaFilter && <S.ErrorMsg id="grid-1">Esses são seus personagens marcados como favoritos</S.ErrorMsg>}
 
       {errorMessageSearch !== "" ? (
         <>
@@ -90,27 +110,25 @@ export default function Card() {
       ) : (
         data &&
         data.pages &&
-        data.pages.map(
-          (page, i) =>
-            page.results &&
-            page.results.map((d: any) => (
-              <Link key={d.id} href={`/components/details/Details?id=${d.id}`}>
-                <S.CardMain>
-                  <Image src={d.image} height={200} width={200} alt={d.name} priority />
-                  <S.CardText>
-                    <S.CardName>{d.name.split(" ").slice(0, 2).join(" ")}</S.CardName>
-                    <S.CardLocation>{d.location.name}</S.CardLocation>
-                  </S.CardText>
-                  <S.FavBt
-                    key={d.id}
-                    onClick={() => handleClick(d.id, true)}
-                    className={favoritePersona.find((p: any) => p.id === d.id && p.status) ? "active" : ""}
-                  >
-                    <StarIcon />
-                  </S.FavBt>
-                </S.CardMain>
+        data.pages.map((page) =>
+          (page.results ? page.results : page)?.map((d: any) => (
+            <S.CardMain key={d.id}>
+              <Link href={`/components/details/Details?id=${d.id}`}>
+                <Image src={d.image} height={200} width={200} alt={d.name} priority />
+                <S.CardText>
+                  <S.CardName>{d.name.split(" ").slice(0, 2).join(" ")}</S.CardName>
+                  <S.CardLocation>{d.location.name}</S.CardLocation>
+                </S.CardText>
               </Link>
-            ))
+
+              <S.FavBt
+                onClick={() => handleClickDetailsPersona(d.id, true)}
+                className={favoritePersona.find((p: any) => p.id === d.id && p.status) ? "active" : ""}
+              >
+                <StarIcon />
+              </S.FavBt>
+            </S.CardMain>
+          ))
         )
       )}
 
