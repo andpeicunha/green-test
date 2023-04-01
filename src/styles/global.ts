@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
     html {
         font-size: 62.5%;
-        background-color: rgba(220, 220, 220, 0.5);
+        background-color: rgba(0, 0, 0, 0.9);
     }
 
     html, body, #__next {

@@ -121,6 +121,7 @@ export default function Card() {
           Buscando Personagens...
         </ErrorMsg>
       )}
+
       {favoritePersonaFilter && (
         <ErrorMsg className="filter" id="grid-1">
           Esses são seus personagens favoritos
@@ -173,7 +174,7 @@ export default function Card() {
 
       {hasNextPage && (
         <CardBt id="grid-1" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-          Mostrar Mais Personagens
+          {isFetchingNextPage ? <span>Carregando...</span> : <span>Mostrar Mais Personagens</span>}
         </CardBt>
       )}
     </>

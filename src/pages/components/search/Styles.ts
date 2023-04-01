@@ -5,14 +5,18 @@ const Input = styled.input`
   border: 1px solid #ababab;
   height: 25px;
   width: 65%;
-  margin: 12px 10px 0 0;
+  margin: 12px 10px 15px 0;
   padding: 5px 10px;
   font-size: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 9px 2px rgba(151, 255, 162, 0.5) !important;
 
   :disabled {
-    opacity: 0.6;
-    background-color: #d9d9d9;
+    opacity: 0.4;
+    background-color: #ababab;
+    ::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
   }
 
   ::placeholder {
@@ -26,13 +30,9 @@ const Input = styled.input`
     color: transparent;
   }
 
-  @media (min-width: 420px) {
-    margin: 12px 0px 0 15px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin: 12px 0px 15px 15px;
     padding: 5px 10px;
-  }
-  @media (min-width: 768px) {
-    width: 80%;
-    font-size: 16px;
   }
 `;
 export default Input;

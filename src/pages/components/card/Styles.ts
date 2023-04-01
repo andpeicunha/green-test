@@ -67,10 +67,13 @@ export const CardBt = styled.button`
   border: none;
   font-size: 1.5rem;
   padding: 10px;
-  background-color: #73fd81;
-  border: 1px solid #67e374;
+  background-color: #0af056;
+  border: 1px solid #97ffa2;
   margin: 20px 20% 30px;
   cursor: pointer;
+  box-shadow: 0px 0px 10px 4px rgba(10, 240, 86, 0.3);
+  font-weight: 600;
+  font-family: "Roboto Condensed";
 `;
 
 export const FavBt = styled.button`
@@ -106,6 +109,7 @@ export const ErrorMsg = styled.div`
   font-family: "Roboto Condensed";
   font-size: 1.5rem;
   margin-top: 10px;
+  color: #b2b2b2;
 
   &.search {
     font-size: 1.5rem !important;
@@ -122,7 +126,7 @@ export const ErrorMsg = styled.div`
     font-size: 1.8rem !important;
     color: red;
   }
-  @media (min-width: 760px) {
+  @media (min-width: var(--mobile-size)) {
     &.error {
       font-size: 2rem !important;
     }
@@ -134,7 +138,7 @@ export const StyledImage = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: 190px;
   padding: 10px 0 0 0;
 
   img {
@@ -144,16 +148,10 @@ export const StyledImage = styled.div`
     aspect-ratio: attr(width) / attr(height);
   }
 
-  @media (min-width: 425px) {
-    height: 120px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 220px;
   }
-  @media (min-width: 760px) {
-    height: 190px;
-  }
-  @media (min-width: 1020px) {
-    height: 200px;
-  }
-  @media (min-width: 1440px) {
+  @media (min-width: 1024px) {
     height: 260px;
   }
 `;

@@ -15,7 +15,7 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
 
   return (
     <Wrapper id="grid-1">
-      <Input placeholder="Pesquise pelo nome" type="text" onChange={handleChange} disabled={typeIcon} />
+      <Input placeholder="Pesquise o nome do personagem" type="text" onChange={handleChange} disabled={typeIcon} />
       <motion.img
         className="filter-icon"
         src={typeIcon ? "/img/filterFavorClean.png" : "/img/filterFavor.png"}
@@ -24,9 +24,9 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
         height={40}
         onClick={handleClickFavorite}
         key={typeIcon ? "favor-clean" : "favor"}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
       />
     </Wrapper>
   );
