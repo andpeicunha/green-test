@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CardMain, { CardText, CardBt, CardLocation, CardName, ErrorMsg, FavBt, StyledImage } from "./Styles";
 import SearchInput from "../search/SearchInput";
 import StarIcon from "../../../../public/img/star";
+import { motion } from "framer-motion";
 
 interface IFavoritePersona {
   id: string;
@@ -45,7 +46,7 @@ export default function Card() {
     async ({ pageParam = 1 }) => {
       try {
         const url = getBuildUrlSearch(searchValue, favoritePersonaFilter, pageParam);
-        const res = await fetch(`${url}`);
+        const res = await fetch(url);
         if (res.ok) {
           setErrorMessageSearch("");
           return res.json();
@@ -74,7 +75,7 @@ export default function Card() {
     }
   );
 
-  const handleSearchChange = (value: any) => {
+  function handleSearchChange(value: any) {
     clearTimeout(typingTimeout);
 
     setTypingTimeout(
@@ -82,17 +83,16 @@ export default function Card() {
         setSearchValue(value);
       }, 500)
     );
-  };
+  }
 
-  const handleButtonFilterFavorite = () => {
+  function handleButtonFilterFavorite() {
     if (filterOn) {
       setFavoritePersonaFilter("");
-      setFilterOn(false);
     } else {
       setFavoritePersonaFilter(favoritePersona.map((obj) => obj.id).join(","));
-      setFilterOn(true);
     }
-  };
+    setFilterOn(!filterOn);
+  }
 
   function handleClickDetailsPersona(id: string, status: boolean) {
     const newFavoritePersona = { id, status };
@@ -103,6 +103,7 @@ export default function Card() {
       localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
     }
   }
+
   return (
     <>
       <StyledImage id="grid-1">
@@ -122,7 +123,14 @@ export default function Card() {
       )}
       {favoritePersonaFilter && (
         <ErrorMsg className="filter" id="grid-1">
-          Esses são seus personagens marcados como favoritos
+          Esses são seus personagens favoritos
+          <Image
+            src="/img/clear.png"
+            alt="Limpar pesquisa"
+            width={12}
+            height={12}
+            onClick={handleButtonFilterFavorite}
+          />
         </ErrorMsg>
       )}
 
@@ -133,13 +141,19 @@ export default function Card() {
           </ErrorMsg>
         </>
       ) : (
-        data &&
-        data.pages &&
-        data.pages.map((page) =>
-          (page.results ? page.results : page)?.map((d: any) => (
+        // data &&
+        // data.pages &&
+        data?.pages.map((page) =>
+          (page.results ? page.results : page)?.map((d: any, i: number) => (
             <CardMain key={d.id}>
               <Link href={`/components/details/Details?id=${d.id}`}>
-                <Image src={d.image} height={200} width={200} alt={d.name} priority />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 + i * 0.2, ease: "easeInOut" }}
+                >
+                  <Image src={d.image} height={200} width={200} alt={d.name} priority />
+                </motion.div>
                 <CardText>
                   <CardName>{d.name.split(" ").slice(0, 2).join(" ")}</CardName>
                   <CardLocation>{d.location.name}</CardLocation>

@@ -4,10 +4,11 @@ const Input = styled.input`
   border-radius: 50px;
   border: 1px solid #ababab;
   height: 25px;
-  width: 75%;
-  margin: 12px 0%;
-  padding: 5px 18px;
-  font-size: 14px;
+  width: 65%;
+  margin: 12px 10px 0 0;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
 
   :disabled {
     opacity: 0.6;
@@ -15,7 +16,7 @@ const Input = styled.input`
   }
 
   ::placeholder {
-    color: #ababab;
+    color: #757575;
     text-transform: uppercase;
     font-size: 12px;
     padding-left: 10px;
@@ -25,7 +26,12 @@ const Input = styled.input`
     color: transparent;
   }
 
+  @media (min-width: 420px) {
+    margin: 12px 0px 0 15px;
+    padding: 5px 10px;
+  }
   @media (min-width: 768px) {
+    width: 80%;
     font-size: 16px;
   }
 `;

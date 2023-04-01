@@ -76,15 +76,17 @@ export const CardBt = styled.button`
 export const FavBt = styled.button`
   position: relative;
   border: none;
-  top: 2.5px;
+  top: 3.5px;
   left: 45%;
   z-index: 100;
   background-color: transparent;
 
+  svg {
+    height: 17px;
+    width: 17px;
+  }
   svg path {
     cursor: pointer;
-    height: 16px;
-    width: 16px;
     border: 8px solid transparent;
     fill: gray !important;
   }
@@ -103,17 +105,27 @@ export const ErrorMsg = styled.div`
   align-items: center;
   font-family: "Roboto Condensed";
   font-size: 1.5rem;
+  margin-top: 10px;
 
   &.search {
-    font-size: 1.9rem !important;
+    font-size: 1.5rem !important;
   }
   &.filter {
     font-weight: 700;
-    font-size: 1.7rem !important;
+    font-size: 1.5rem !important;
+  }
+  &.filter img {
+    margin-left: 5px;
+    cursor: pointer;
   }
   &.error {
     font-size: 1.8rem !important;
     color: red;
+  }
+  @media (min-width: 760px) {
+    &.error {
+      font-size: 2rem !important;
+    }
   }
 `;
 
@@ -127,16 +139,16 @@ export const StyledImage = styled.div`
 
   img {
     height: auto;
-    width: 90%;
+    width: 100%;
+    margin: 10px 0 0 10px;
     aspect-ratio: attr(width) / attr(height);
   }
 
   @media (min-width: 425px) {
     height: 120px;
   }
-
   @media (min-width: 760px) {
-    height: 150px;
+    height: 190px;
   }
   @media (min-width: 1020px) {
     height: 200px;
