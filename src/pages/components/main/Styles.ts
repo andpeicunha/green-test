@@ -9,19 +9,19 @@ const MainCont = styled.div`
     grid-column: 1 / 3;
   }
 
-  @media (max-width: 767.99px) {
-    grid-template-columns: 48% 48%;
+  @media (max-width: 767px) {
+    grid-template-columns: 49% 49%;
   }
 
-  @media (min-width: 768px) and (max-width: 1023.99px) {
-    grid-template-columns: 24.1% 24.1% 24.1% 24.1%;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    grid-template-columns: 25% 25% 25% 25%;
 
     #grid-1 {
       grid-column: 1 / 5;
     }
   }
   @media (min-width: 1024px) {
-    grid-template-columns: 16.25% 16.25% 16.25% 16.25% 16.25% 16.25%;
+    grid-template-columns: 16.85% 16.85% 16.85% 16.85% 16.85% 16.85%;
 
     #grid-1 {
       grid-column: 1 / 7;
