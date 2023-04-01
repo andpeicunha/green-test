@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import BackButton from "../commons/BackButton";
 
+import Wrapper from "./Styles";
+import { ErrorMsg } from "../card/Styles";
+
 export default function Details() {
   const router = useRouter();
   const id = router.query.id;
@@ -24,20 +27,20 @@ export default function Details() {
   });
 
   if (status === "loading") {
-    return <span>Carregando...</span>;
+    return <ErrorMsg className="search">Carregando...</ErrorMsg>;
   }
 
   if (status === "error") {
-    return <div>Erro API</div>;
+    return <ErrorMsg className="error">Erro ao Carregar Dados</ErrorMsg>;
   }
 
-  console.log(data);
   return (
     <>
-      <div>Página Details {id}</div>
-      <BackButton />
-
-      <div>{data.name}</div>
+      <Wrapper>
+        <BackButton />
+        <div>Nome: {data.name}</div>
+        <div>Participou de quantos episódios: {data.episode.length}</div>
+      </Wrapper>
     </>
   );
 }

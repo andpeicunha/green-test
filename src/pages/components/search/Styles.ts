@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Menu } from "@mui/material";
 
 const Input = styled.input`
   border-radius: 50px;
@@ -47,5 +48,20 @@ export const Wrapper = styled.div`
     top: 9px;
     left: -10px;
     cursor: pointer;
+  }
+`;
+
+export const StyledMenu = styled(Menu)`
+  button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  svg {
+    height: 35px;
+    width: 35px;
+  }
+
+  .custom-class {
+    font-size: 1.3rem;
   }
 `;
