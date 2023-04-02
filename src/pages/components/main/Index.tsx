@@ -136,8 +136,8 @@ export default function Main() {
             <Image
               src="/img/clear.png"
               alt="Limpar pesquisa"
-              width={12}
-              height={12}
+              width={14}
+              height={14}
               onClick={handleClearFavoriteFilter}
             />
           </ErrorMsg>

@@ -12,6 +12,11 @@ const Input = styled.input`
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0px 0px 9px 2px rgba(151, 255, 162, 0.5) !important;
 
+  :hover {
+    box-shadow: 0px 0px 9px 2px rgba(151, 255, 162, 0.8) !important;
+    border: 2px solid #9bc11d;
+  }
+
   :disabled {
     opacity: 0.4;
     background-color: #ababab;
@@ -42,6 +47,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  button {
+    border-radius: 50px;
+  }
+
+  button svg {
+    height: 30px;
+    width: 30px;
+  }
 
   img {
     position: relative;

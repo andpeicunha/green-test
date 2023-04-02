@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import BackButton from "../commons/BackButton";
+import Image from "next/image";
 
-import Wrapper from "./Styles";
-import { ErrorMsg } from "../card/Styles";
+import BackButton from "../commons/BackButton";
+import Wrapper, { StImgDetails } from "./Styles";
+import { ErrorMsg, FavBt } from "../card/Styles";
+import StarIcon from "../../../../public/img/star";
 
 export default function Details() {
+  const [favoritePersona, setFavoritePersona] = React.useState<any>([]);
   const router = useRouter();
   const id = router.query.id;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const favoritePersonaFromStorage = localStorage.getItem("favoritePersona");
+      if (favoritePersonaFromStorage) {
+        const parsedFavoritePersona = JSON.parse(favoritePersonaFromStorage);
+        setFavoritePersona(parsedFavoritePersona);
+      }
+    }
+  }, []);
 
   async function fetchTodoList() {
     if (id !== undefined) {
@@ -34,12 +47,39 @@ export default function Details() {
     return <ErrorMsg className="error">Erro ao Carregar Dados</ErrorMsg>;
   }
 
+  const g = data.gender === "Female" ? "a" : "o"; //genero
+  const dataCreated = new Date(data.created); // converte a string em um objeto Date
+  const dataFormatada = `${dataCreated.getUTCDate()}/${dataCreated.getUTCMonth() + 1}/${dataCreated.getUTCFullYear()}`; // formata a data no formato desejado
+
+  function handleClickDetailsPersona(id: string, status: boolean) {
+    const newFavoritePersona = { id, status };
+
+    if (!favoritePersona.some((p: any) => p.id === id)) {
+      const newArrayLocalStorage = [...favoritePersona, newFavoritePersona];
+      setFavoritePersona(newArrayLocalStorage);
+      localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
+    }
+  }
   return (
     <>
       <Wrapper>
+        <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
+        <StImgDetails src={data.image} alt={data.name} />
         <BackButton />
-        <div>Nome: {data.name}</div>
-        <div>Participou de quantos episódios: {data.episode.length}</div>
+
+        <div className="nome">
+          {data.name}
+          <FavBt onClick={() => handleClickDetailsPersona(data.id, true)} className={status}>
+            <StarIcon />
+          </FavBt>
+        </div>
+        <div className="description">
+          {data.name} participou de <span id="strongBg">{data.episode.length}</span>
+          episódio(s).
+          <br />É <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
+          <span id="strongBg">{data.location.name}.</span>
+          <p /> Foi criad{g} em <span id="strongBg">{dataFormatada}</span>.
+        </div>
       </Wrapper>
     </>
   );
