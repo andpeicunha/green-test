@@ -32,7 +32,7 @@ export default function Card(props: ICardProps) {
 
   return (
     <CardMain>
-      <Link href={`/components/details/Details?id=${props.id}`}>
+      <Link href={`/components/details/Details?id=${props.id}&status=${props.iconActiveFavor}`}>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

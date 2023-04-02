@@ -92,22 +92,20 @@ export default function Main() {
     setFilterOn(!filterOn);
   }
 
-  function handleClearFavoriteFilter() {
-    if (filterOn) {
-      setFavoritePersonaFilter("");
-    } else {
-      setFavoritePersonaFilter(favoritePersona.map((obj) => obj.id).join(","));
-    }
-    setFilterOn(!filterOn);
-  }
-
-  function handleClickDetailsPersona(id: string, status: boolean) {
+  function handleClickAddFavorPersona(id: string, status: boolean) {
     const newFavoritePersona = { id, status };
+    const isFavorite = favoritePersona.some((p: any) => p.id === id);
 
-    if (!favoritePersona.some((p: any) => p.id === id)) {
-      const newArrayLocalStorage = [...favoritePersona, newFavoritePersona];
-      setFavoritePersona(newArrayLocalStorage);
-      localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
+    if (isFavorite) {
+      // Remove o item dos favoritos
+      const newFavoritePersonaList = favoritePersona.filter((p: any) => p.id !== id);
+      setFavoritePersona(newFavoritePersonaList);
+      localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
+    } else {
+      // Adiciona o item aos favoritos
+      const newFavoritePersonaList = [...favoritePersona, newFavoritePersona];
+      setFavoritePersona(newFavoritePersonaList);
+      localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
     }
   }
 
@@ -138,7 +136,7 @@ export default function Main() {
               alt="Limpar pesquisa"
               width={14}
               height={14}
-              onClick={handleClearFavoriteFilter}
+              onClick={handleButtonFilterFavorite}
             />
           </ErrorMsg>
         )}
@@ -156,7 +154,7 @@ export default function Main() {
                 id={d.id}
                 name={d.name}
                 location={d.location.name}
-                onClick={() => handleClickDetailsPersona(d.id, true)}
+                onClick={() => handleClickAddFavorPersona(d.id, true)}
                 image={d.image}
                 iconActiveFavor={favoritePersona.find((p: any) => d.id === p.id && p.status) ? "active" : ""}
               />

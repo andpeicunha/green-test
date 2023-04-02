@@ -10,8 +10,16 @@ import StarIcon from "../../../../public/img/star";
 
 export default function Details() {
   const [favoritePersona, setFavoritePersona] = React.useState<any>([]);
+  const [statusIcon, setStatusIcon] = React.useState("");
+
   const router = useRouter();
   const id = router.query.id;
+  const statusIconRouter = () => {
+    const status = String(router.query.status);
+    setStatusIcon(status);
+  };
+
+  console.log(statusIcon);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -69,7 +77,7 @@ export default function Details() {
 
         <div className="nome">
           {data.name}
-          <FavBt onClick={() => handleClickDetailsPersona(data.id, true)} className={status}>
+          <FavBt onClick={() => handleClickDetailsPersona(data.id, true)} className={`${statusIcon} favorite-icon`}>
             <StarIcon />
           </FavBt>
         </div>
@@ -78,7 +86,7 @@ export default function Details() {
           episódio(s).
           <br />É <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
           <span id="strongBg">{data.location.name}.</span>
-          <p /> Foi criad{g} em <span id="strongBg">{dataFormatada}</span>.
+          <p /> Este personagem foi criad{g} em <span id="strongBg">{dataFormatada}</span>.
         </div>
       </Wrapper>
     </>

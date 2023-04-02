@@ -1,10 +1,11 @@
 import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
 
 import Input, { Wrapper, StyledMenu } from "./Styles";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { Button, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+import StarIcon from "@mui/icons-material/Star";
+import FaceIcon from "@mui/icons-material/Face";
 
 export default function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon }: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,6 +13,10 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClickCleanFilter = () => {
+    filterFavoritePersona();
   };
 
   const handleClose = () => {
@@ -31,28 +36,29 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
   return (
     <Wrapper id="grid-1">
       <Input placeholder="Pesquise o nome do personagem" type="text" onChange={handleChange} disabled={typeIcon} />
-      {/* <motion.img
-        className="filter-icon"
-        src={typeIcon ? "/img/filterFavorClean.png" : "/img/filterFavor.png"}
-        alt="Filtrar Resultados"
-        width={40}
-        height={40}
-        onClick={handleClickFavorite}
-        key={typeIcon ? "favor-clean" : "favor"}
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      /> */}
 
-      <Button
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      >
-        <FilterAltIcon />
-      </Button>
+      {typeIcon ? (
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClickCleanFilter}
+          className="custom-iconOff-filter"
+        >
+          <FilterAltOffIcon />
+        </Button>
+      ) : (
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <FilterAltIcon />
+        </Button>
+      )}
       <StyledMenu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -71,6 +77,9 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
         }}
       >
         <MenuItem onClick={handleClickFavorite} className="custom-class">
+          <ListItemIcon className="custom-icon">
+            <StarIcon fontSize="small" />
+          </ListItemIcon>
           Mostrar Favoritos
         </MenuItem>
       </StyledMenu>

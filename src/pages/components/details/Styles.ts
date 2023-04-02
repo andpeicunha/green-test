@@ -15,19 +15,15 @@ const Wrapper = styled.div`
   width: 100vw;
   font-family: "Roboto Condensed" !important;
 
-  background-size: cover;
-  background-position-x: center;
-  background-position-y: -5rem;
-  background-repeat: no-repeat;
   background-color: #000;
 
   img {
     position: absolute;
-    top: 0rem;
-    right: 2rem;
+    top: -0.7rem;
+    right: 1.5rem;
 
-    height: 8rem;
-    width: 16rem;
+    height: 10rem;
+    width: 20rem;
   }
 
   button {
@@ -42,10 +38,21 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 
+  .favorite-icon {
+    position: absolute;
+    top: 0.3rem;
+    left: -4rem;
+    background-color: transparent;
+  }
+  .favorite-icon svg {
+    height: 3rem !important;
+    width: 2.5rem !important;
+  }
+
   .nome {
     position: absolute;
     top: 35rem;
-    margin-left: 2rem;
+    margin-left: 5.1rem;
     font-size: 4rem;
   }
 
@@ -75,11 +82,19 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 92%), url(${(props) => props.src});
-  /* background-image: url(${(props) => props.src}); */
   background-size: cover;
   background-position-x: center;
   background-repeat: no-repeat;
 
-  height: 80vh;
+  height: 90vh;
   width: 100vw;
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 100vh;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 100%), url(${(props) => props.src});
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+  }
 `;

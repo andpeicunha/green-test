@@ -78,4 +78,11 @@ export const StyledMenu = styled(Menu)`
   .custom-class {
     font-size: 1.3rem;
   }
+  .custom-icon svg {
+    height: 25px;
+  }
+
+  &.custom-iconOff-filter svg path {
+    fill: yellow !important;
+  }
 `;

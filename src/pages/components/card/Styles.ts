@@ -123,10 +123,10 @@ export const ErrorMsg = styled.div`
   }
   &.filter {
     font-weight: 700;
-    font-size: 1.5rem !important;
+    font-size: 1.7rem !important;
   }
   &.filter img {
-    margin-left: 5px;
+    margin-left: 10px;
     cursor: pointer;
   }
   &.error {
@@ -144,9 +144,9 @@ export const LogoImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 190px;
-  padding: 10px 5% 0px 5px;
+  width: 97%;
+  height: 180px;
+  padding: 0;
 
   img {
     height: auto;
