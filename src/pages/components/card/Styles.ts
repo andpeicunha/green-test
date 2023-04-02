@@ -125,6 +125,16 @@ export const ErrorMsg = styled.div`
     font-weight: 700;
     font-size: 1.7rem !important;
   }
+  &.filter .limpar-filtro {
+    background-color: #fff;
+    border-radius: 50px;
+    color: #000;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
   &.filter img {
     margin-left: 10px;
     cursor: pointer;

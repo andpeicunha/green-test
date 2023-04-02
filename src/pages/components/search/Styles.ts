@@ -52,6 +52,22 @@ export const Wrapper = styled.div`
     border-radius: 50px;
   }
 
+  .qtde-favoritos {
+    position: absolute;
+    background-color: #bce529;
+    border-radius: 100%;
+    border: 3px solid #596d07;
+    margin-top: -16px;
+    margin-left: 25px;
+
+    font-size: 1rem;
+    font-weight: 500;
+    color: #596d07;
+
+    height: 14px;
+    width: 14px;
+  }
+
   button svg {
     height: 30px;
     width: 30px;

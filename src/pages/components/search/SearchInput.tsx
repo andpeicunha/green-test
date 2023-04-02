@@ -6,8 +6,9 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
 import StarIcon from "@mui/icons-material/Star";
 import FaceIcon from "@mui/icons-material/Face";
+import { isQuestionDotToken } from "typescript";
 
-export default function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon }: any) {
+export default function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon, qtdePersonagens }: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -56,7 +57,7 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          <FilterAltIcon />
+          <FilterAltIcon /> {qtdePersonagens > 0 ? <span className="qtde-favoritos">{qtdePersonagens}</span> : ""}
         </Button>
       )}
       <StyledMenu
@@ -80,7 +81,7 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
           <ListItemIcon className="custom-icon">
             <StarIcon fontSize="small" />
           </ListItemIcon>
-          Mostrar Favoritos
+          Mostrar {qtdePersonagens} Favoritos
         </MenuItem>
       </StyledMenu>
     </Wrapper>

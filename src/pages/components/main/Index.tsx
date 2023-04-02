@@ -97,18 +97,17 @@ export default function Main() {
     const isFavorite = favoritePersona.some((p: any) => p.id === id);
 
     if (isFavorite) {
-      // Remove o item dos favoritos
       const newFavoritePersonaList = favoritePersona.filter((p: any) => p.id !== id);
       setFavoritePersona(newFavoritePersonaList);
       localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
     } else {
-      // Adiciona o item aos favoritos
       const newFavoritePersonaList = [...favoritePersona, newFavoritePersona];
       setFavoritePersona(newFavoritePersonaList);
       localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
     }
   }
 
+  console.log(favoritePersona.length);
   return (
     <>
       <MainCont>
@@ -120,6 +119,7 @@ export default function Main() {
           onVariableChange={handleSearchChange}
           filterFavoritePersona={handleButtonFilterFavorite}
           typeIcon={filterOn}
+          qtdePersonagens={favoritePersona.length}
         />
 
         {isLoading && (
@@ -130,14 +130,10 @@ export default function Main() {
 
         {favoritePersonaFilter && (
           <ErrorMsg className="filter" id="grid-1">
-            Esses são seus personagens favoritos
-            <Image
-              src="/img/clear.png"
-              alt="Limpar pesquisa"
-              width={14}
-              height={14}
-              onClick={handleButtonFilterFavorite}
-            />
+            Esses são seus {favoritePersona.length} personagens favoritos
+            <span onClick={handleButtonFilterFavorite} className="limpar-filtro">
+              Limpar Filtro
+            </span>
           </ErrorMsg>
         )}
 

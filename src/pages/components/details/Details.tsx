@@ -73,6 +73,7 @@ export default function Details() {
       <Wrapper>
         <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
         <StImgDetails src={data.image} alt={data.name} />
+        <Image src={data.image} alt={data.name} width={300} height={300} className="imgBigMedia" />
         <BackButton />
 
         <div className="nome">
@@ -86,7 +87,7 @@ export default function Details() {
           episódio(s).
           <br />É <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
           <span id="strongBg">{data.location.name}.</span>
-          <p /> Este personagem foi criad{g} em <span id="strongBg">{dataFormatada}</span>.
+          <p /> Este personagem foi criad{g} no dia <span id="strongBg">{dataFormatada}</span>.
         </div>
       </Wrapper>
     </>

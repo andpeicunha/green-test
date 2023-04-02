@@ -17,6 +17,17 @@ const Wrapper = styled.div`
 
   background-color: #000;
 
+  .imgBigMedia {
+    position: absolute;
+    top: 8rem;
+    left: 2.5rem;
+    height: 380px !important;
+    width: 380px !important;
+    border-radius: 20px;
+    box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+  }
+
   img {
     position: absolute;
     top: -0.7rem;
@@ -74,6 +85,27 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .nome {
+      top: 65vh;
+    }
+    .description {
+      top: 71vh;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nome {
+      top: 65vh;
+    }
+    .description {
+      top: 71vh;
+    }
+    .imgBigMedia {
+      visibility: visible;
+    }
+  }
 `;
 export default Wrapper;
 
@@ -96,5 +128,16 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
     background-size: cover;
     background-position-x: center;
     background-repeat: no-repeat;
+  }
+
+  @media (min-width: 1024px) {
+    height: 100vh;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 100%), url(${(props) => props.src});
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur(8px);
   }
 `;
