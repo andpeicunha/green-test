@@ -86,6 +86,16 @@ const Wrapper = styled.div`
     }
   }
 
+  .episode {
+    position: absolute;
+    top: 48rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.8;
+  }
+
   @media (min-width: 768px) and (max-width: 1023px) {
     .nome {
       top: 65vh;

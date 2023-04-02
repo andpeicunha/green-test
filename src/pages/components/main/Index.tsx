@@ -16,8 +16,8 @@ export default function Main() {
   const [filterOn, setFilterOn] = useState(false);
   const [typingTimeout, setTypingTimeout] = useState<any>();
   const [searchValue, setSearchValue] = useState("");
-  const [favoritePersonaFilter, setFavoritePersonaFilter] = useState("");
   const [favoritePersona, setFavoritePersona] = useState<IFavoritePersona[]>([]);
+  const [favoritePersonaFilter, setFavoritePersonaFilter] = useState("");
   const [errorMessageSearch, setErrorMessageSearch] = useState("");
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Main() {
         setFavoritePersona(parsedFavoritePersona);
       }
     }
-  }, []);
+  }, [favoritePersonaFilter]);
 
   const getBuildUrlSearch = (searchValue: any, searchStringFavPersona: any, pageParam: any) => {
     let url = "https://rickandmortyapi.com/api/character";
@@ -107,7 +107,6 @@ export default function Main() {
     }
   }
 
-  console.log(favoritePersona.length);
   return (
     <>
       <MainCont>

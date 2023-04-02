@@ -14,12 +14,12 @@ export default function Details() {
 
   const router = useRouter();
   const id = router.query.id;
-  const statusIconRouter = () => {
-    const status = String(router.query.status);
-    setStatusIcon(status);
-  };
 
-  console.log(statusIcon);
+  useEffect(() => {
+    const Status = String(router.query.status);
+    setStatusIcon(Status);
+  }, [statusIcon]);
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -46,18 +46,13 @@ export default function Details() {
     queryFn: fetchTodoList,
     enabled: id !== undefined,
   });
-
   if (status === "loading") {
     return <ErrorMsg className="search">Carregando...</ErrorMsg>;
   }
-
   if (status === "error") {
     return <ErrorMsg className="error">Erro ao Carregar Dados</ErrorMsg>;
   }
-
   const g = data.gender === "Female" ? "a" : "o"; //genero
-  const dataCreated = new Date(data.created); // converte a string em um objeto Date
-  const dataFormatada = `${dataCreated.getUTCDate()}/${dataCreated.getUTCMonth() + 1}/${dataCreated.getUTCFullYear()}`; // formata a data no formato desejado
 
   function handleClickDetailsPersona(id: string, status: boolean) {
     const newFavoritePersona = { id, status };
@@ -85,9 +80,21 @@ export default function Details() {
         <div className="description">
           {data.name} participou de <span id="strongBg">{data.episode.length}</span>
           episódio(s).
-          <br />É <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
+          <br />
+          El{g.replace("o", "e")} é um{g.replace("o", "")}{" "}
+          <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
           <span id="strongBg">{data.location.name}.</span>
-          <p /> Este personagem foi criad{g} no dia <span id="strongBg">{dataFormatada}</span>.
+        </div>
+        <div className="episode">
+          Episódios
+          <br />
+          {data.episode.map((e: any, index: number) => (
+            <ul key={index}>
+              <li>
+                <span id="strongBg">{e.split("/").pop()}</span>
+              </li>
+            </ul>
+          ))}
         </div>
       </Wrapper>
     </>
