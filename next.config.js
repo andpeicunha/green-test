@@ -8,9 +8,5 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
-  experimental: {
-    outputFileTracingExcludes: {
-      '/pages/test': ['./pages/test/*.test.tsx'],
-    },
-  },
+  pageExtensions: ['!.test.ts(x)'],
 }
