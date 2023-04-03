@@ -154,14 +154,14 @@ export const LogoImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 97%;
-  height: 180px;
+  width: 100vw;
+  height: 160px;
   padding: 0;
 
   img {
     height: auto;
-    width: 110%;
-    margin: 10px 0 0 10px;
+    width: 85%;
+    margin: 0;
     aspect-ratio: attr(width) / attr(height);
   }
 

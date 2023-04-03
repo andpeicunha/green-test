@@ -11,8 +11,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   color: white;
-  height: 100vh;
-  width: 100vw;
   font-family: "Roboto Condensed" !important;
 
   .imgBigMedia {
@@ -181,8 +179,6 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 92%), url(${(props) =>
-    props.src}); */
   background-color: #000;
   background-image: url(${(props) => props.src});
   background-size: cover;

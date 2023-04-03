@@ -47,31 +47,36 @@ export default Input;
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 
   button {
-    border-radius: 50px;
+    background-color: transparent;
+    border-radius: 100%;
+    min-width: 0px;
+    width: 0px;
+    height: 0px;
+    margin-left: 1.5vw;
   }
-
+  button svg {
+    height: 28px;
+    width: 28px;
+  }
   .qtde-favoritos {
     position: absolute;
     background-color: #bce529;
     border-radius: 100%;
     border: 3px solid #596d07;
-    margin-top: -16px;
+    margin-top: -23px;
     margin-left: 25px;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: #596d07;
 
-    height: 14px;
-    width: 14px;
-  }
-
-  button svg {
-    height: 30px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
   }
 
   img {
