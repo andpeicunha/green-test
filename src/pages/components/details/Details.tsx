@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -7,20 +7,24 @@ import BackButton from "../commons/BackButton";
 import Wrapper, { StImgDetails } from "./Styles";
 import { ErrorMsg, FavBt } from "../card/Styles";
 import StarIcon from "../../../../public/img/star";
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Details() {
-  const [favoritePersona, setFavoritePersona] = React.useState<any>([]);
-  const [statusIcon, setStatusIcon] = React.useState("");
+  const [favoritePersona, setFavoritePersona] = useState<any>([]);
 
   const router = useRouter();
   const id = router.query.id;
 
   useEffect(() => {
-    const Status = String(router.query.status);
-    setStatusIcon(Status);
-  }, [statusIcon]);
+    if (typeof window !== "undefined") {
+      const favoritePersonaFromStorage = localStorage.getItem("favoritePersona");
+      if (favoritePersonaFromStorage) {
+        const parsedFavoritePersona = JSON.parse(favoritePersonaFromStorage);
+        setFavoritePersona(parsedFavoritePersona);
+      }
+    }
+  }, []);
+
+  console.log("favoritePersona: ", favoritePersona);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -55,15 +59,21 @@ export default function Details() {
   }
   const g = data.gender === "Female" ? "a" : "o"; //genero
 
-  function handleClickDetailsPersona(id: string, status: boolean) {
+  function handleClickAddFavorPersona(id: string, status: boolean) {
     const newFavoritePersona = { id, status };
+    const isFavorite = favoritePersona.some((p: any) => p.id === id);
 
-    if (!favoritePersona.some((p: any) => p.id === id)) {
-      const newArrayLocalStorage = [...favoritePersona, newFavoritePersona];
-      setFavoritePersona(newArrayLocalStorage);
-      localStorage.setItem("favoritePersona", JSON.stringify(newArrayLocalStorage));
+    if (isFavorite) {
+      const newFavoritePersonaList = favoritePersona.filter((p: any) => p.id !== id);
+      setFavoritePersona(newFavoritePersonaList);
+      localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
+    } else {
+      const newFavoritePersonaList = [...favoritePersona, newFavoritePersona];
+      setFavoritePersona(newFavoritePersonaList);
+      localStorage.setItem("favoritePersona", JSON.stringify(newFavoritePersonaList));
     }
   }
+
   return (
     <>
       <Wrapper>
@@ -74,18 +84,21 @@ export default function Details() {
 
         <div className="nome">
           {data.name}
-          <FavBt onClick={() => handleClickDetailsPersona(data.id, true)} className={`${statusIcon} favorite-icon`}>
+          <FavBt
+            onClick={() => handleClickAddFavorPersona(data.id, true)}
+            className={
+              favoritePersona.find((p: any) => data.id === p.id && p.status) ? "active favorite-icon" : "favorite-icon"
+            }
+          >
             <StarIcon />
           </FavBt>
         </div>
 
         <div className="description">
-          {data.name} participou de <span id="strongBg">{data.episode.length}</span>
-          episódio(s).
+          {data.name} participou de <span id="strongBg">{data.episode.length}</span> episódio(s).
           <br />
-          El{g.replace("o", "e")} é um{g.replace("o", "")}{" "}
-          <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
-          <span id="strongBg">{data.location.name}.</span>
+          Sua origem é <span id="strongBg">{data.location.name}.</span> El{g.replace("o", "e")} é um{g.replace("o", "")}{" "}
+          {data.species === "Human" ? `Human${g}` : "Alien"}
         </div>
 
         <div className="episode">

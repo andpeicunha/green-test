@@ -28,7 +28,7 @@ export default function Main() {
         setFavoritePersona(parsedFavoritePersona);
       }
     }
-  }, [favoritePersonaFilter]);
+  }, []);
 
   const getBuildUrlSearch = (searchValue: any, searchStringFavPersona: any, pageParam: any) => {
     let url = "https://rickandmortyapi.com/api/character";
@@ -129,10 +129,21 @@ export default function Main() {
 
         {favoritePersonaFilter && (
           <ErrorMsg className="filter" id="grid-1">
-            Esses são seus {favoritePersona.length} personagens favoritos
-            <span onClick={handleButtonFilterFavorite} className="limpar-filtro">
-              Limpar Filtro
-            </span>
+            {favoritePersonaFilter.length > 1 ? (
+              <span>
+                Esses são seus {favoritePersona.length} personagens favoritos
+                <span onClick={handleButtonFilterFavorite} className="limpar-filtro">
+                  Limpar Filtro
+                </span>
+              </span>
+            ) : (
+              <span>
+                Este é seu único personagem favorito
+                <span onClick={handleButtonFilterFavorite} className="limpar-filtro">
+                  Limpar Filtro
+                </span>
+              </span>
+            )}
           </ErrorMsg>
         )}
 
