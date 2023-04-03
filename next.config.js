@@ -8,5 +8,5 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
-  pageExtensions: ['!.test.ts(x)'],
+  pageExtensions: ['jsx', 'js', 'ts', 'tsx', '!test.tsx'],
 }
