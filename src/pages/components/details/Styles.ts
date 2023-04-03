@@ -15,8 +15,6 @@ const Wrapper = styled.div`
   width: 100vw;
   font-family: "Roboto Condensed" !important;
 
-  background-color: #000;
-
   .imgBigMedia {
     position: absolute;
     top: 8rem;
@@ -95,6 +93,12 @@ const Wrapper = styled.div`
     display: grid;
     grid-gap: 0.3rem 4%;
     grid-template-columns: repeat(8, 7.2vw);
+
+    ul {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
 
     .item {
       text-align: center;
@@ -177,10 +181,15 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 92%), url(${(props) => props.src});
+  /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 92%), url(${(props) =>
+    props.src}); */
+  background-color: #000;
+  background-image: url(${(props) => props.src});
   background-size: cover;
   background-position-x: center;
   background-repeat: no-repeat;
+  position: fixed;
+  z-index: -1;
 
   height: 90vh;
   width: 100vw;
@@ -192,7 +201,7 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
     background-size: cover;
     background-position-x: center;
     background-repeat: no-repeat;
-    filter: blur(8px);
+    filter: blur(8px) brightness(60%);
   }
 
   @media (min-width: 1024px) {
@@ -203,6 +212,25 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
     background-position-x: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    filter: blur(8px);
+    filter: blur(8px) brightness(60%);
+  }
+`;
+
+export const MaskGradiente = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: red;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 87%);
+  z-index: -1;
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 90%);
+  }
+
+  @media (min-width: 1024px) {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 95%);
   }
 `;

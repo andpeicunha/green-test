@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 import BackButton from "../commons/BackButton";
-import Wrapper, { StImgDetails } from "./Styles";
+import Wrapper, { StImgDetails, MaskGradiente } from "./Styles";
 import { ErrorMsg, FavBt } from "../card/Styles";
 import StarIcon from "../../../../public/img/star";
 
@@ -77,9 +77,24 @@ export default function Details() {
   return (
     <>
       <Wrapper>
-        <Image src="/img/logo-rickandmorty.png" height={2160} width={3840} alt="Rick and Morty" priority />
-        <StImgDetails src={data.image} alt={data.name} />
-        <Image src={data.image} alt={data.name} width={300} height={300} className="imgBigMedia" />
+        <Image
+          data-testid="imgLogo"
+          src="/img/logo-rickandmorty.png"
+          height={2160}
+          width={3840}
+          alt="Rick and Morty"
+          priority
+          className="imgLogo"
+        />
+        <StImgDetails data-testid="imgPersonaBack" src={data.image} alt={data.name} />
+        <Image
+          src={data.image}
+          alt={data.name}
+          width={300}
+          height={300}
+          className="imgBigMedia"
+          data-testid="imgPersonaDestaqueTop"
+        />
         <BackButton />
 
         <div className="nome">
@@ -89,6 +104,7 @@ export default function Details() {
             className={
               favoritePersona.find((p: any) => data.id === p.id && p.status) ? "active favorite-icon" : "favorite-icon"
             }
+            data-testid="favorite-icon"
           >
             <StarIcon />
           </FavBt>
@@ -116,6 +132,7 @@ export default function Details() {
           ))}
         </div>
       </Wrapper>
+      <MaskGradiente />
     </>
   );
 }

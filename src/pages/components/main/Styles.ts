@@ -29,3 +29,17 @@ const MainCont = styled.div`
   }
 `;
 export default MainCont;
+
+export const BgHome = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -50;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/img/bg-home.png") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: brightness(20%);
+`;

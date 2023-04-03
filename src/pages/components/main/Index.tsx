@@ -2,10 +2,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import MainCont from "./Styles";
+import MainCont, { BgHome } from "./Styles";
 import { CardBt, ErrorMsg, LogoImage } from "../card/Styles";
 import Card from "../card/Card";
 import SearchInput from "../search/SearchInput";
+import { MaskGradiente } from "../details/Styles";
 
 interface IFavoritePersona {
   id: string;
@@ -177,6 +178,8 @@ export default function Main() {
           </button>
         </CardBt>
       )}
+      <BgHome className="bg-home" />
+      <MaskGradiente />
     </>
   );
 }
