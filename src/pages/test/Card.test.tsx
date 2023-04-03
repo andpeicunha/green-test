@@ -1,5 +1,5 @@
 import { render, fireEvent, getByText } from "@testing-library/react";
-import Card from "./Card";
+import Card from "../components/card/Card";
 
 const mockCards = [
   {
