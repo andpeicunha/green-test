@@ -7,6 +7,8 @@ import BackButton from "../commons/BackButton";
 import Wrapper, { StImgDetails } from "./Styles";
 import { ErrorMsg, FavBt } from "../card/Styles";
 import StarIcon from "../../../../public/img/star";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Details() {
   const [favoritePersona, setFavoritePersona] = React.useState<any>([]);
@@ -19,7 +21,6 @@ export default function Details() {
     const Status = String(router.query.status);
     setStatusIcon(Status);
   }, [statusIcon]);
-
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -77,6 +78,7 @@ export default function Details() {
             <StarIcon />
           </FavBt>
         </div>
+
         <div className="description">
           {data.name} participou de <span id="strongBg">{data.episode.length}</span>
           episódio(s).
@@ -85,13 +87,17 @@ export default function Details() {
           <span id="strongBg">{data.species === "Human" ? `Human${g}` : "Alien"}</span> e sua origem é{" "}
           <span id="strongBg">{data.location.name}.</span>
         </div>
+
         <div className="episode">
-          Episódios
-          <br />
+          <span className="item title" id="strongBg">
+            Episódios
+          </span>
           {data.episode.map((e: any, index: number) => (
             <ul key={index}>
               <li>
-                <span id="strongBg">{e.split("/").pop()}</span>
+                <span id="strongBg" className="item">
+                  {e.split("/").pop()}
+                </span>
               </li>
             </ul>
           ))}

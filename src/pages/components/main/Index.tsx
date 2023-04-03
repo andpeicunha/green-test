@@ -143,7 +143,7 @@ export default function Main() {
         ) : (
           data &&
           data?.pages.map((page) =>
-            (page.results ? page.results : page)?.map((d: any, i: number) => (
+            (page.results ? page.results : Array.isArray(page) ? page : [page])?.map((d: any, i: number) => (
               <Card
                 key={d.id}
                 id={d.id}
