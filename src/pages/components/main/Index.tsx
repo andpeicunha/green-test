@@ -131,12 +131,12 @@ export default function Main() {
         {favoritePersonaFilter && (
           <ErrorMsg className="filter" id="grid-1">
             {favoritePersonaFilter.length > 1 ? (
-              <span>
-                Esses são seus {favoritePersona.length} personagens favoritos
-                <span onClick={handleButtonFilterFavorite} className="limpar-filtro">
+              <div>
+                Esses são seus personagens favoritos
+                <div onClick={handleButtonFilterFavorite} className="limpar-filtro">
                   Limpar Filtro
-                </span>
-              </span>
+                </div>
+              </div>
             ) : (
               <span>
                 Este é seu único personagem favorito

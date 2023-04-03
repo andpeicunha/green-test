@@ -122,8 +122,16 @@ export const ErrorMsg = styled.div`
     font-size: 1.5rem !important;
   }
   &.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     font-weight: 700;
     font-size: 1.7rem !important;
+    .limpar-filtro {
+      text-align: center;
+      margin: 15px 0;
+    }
   }
   &.filter .limpar-filtro {
     background-color: #fff;

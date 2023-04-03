@@ -7,6 +7,7 @@ interface StyledComponentProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivE
 }
 
 const Wrapper = styled.div`
+  background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -176,24 +177,24 @@ const Wrapper = styled.div`
 export default Wrapper;
 
 export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, any>>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
   background-color: #000;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position-x: center;
   background-repeat: no-repeat;
-  position: fixed;
-  z-index: -1;
 
-  height: 90vh;
-  width: 100vw;
+  z-index: -1;
 
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 100vh;
 
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 100%), url(${(props) => props.src});
+    background: url(${(props) => props.src});
     background-size: cover;
     background-position-x: center;
     background-repeat: no-repeat;
@@ -203,7 +204,7 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
   @media (min-width: 1024px) {
     height: 100vh;
 
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 100%), url(${(props) => props.src});
+    background: url(${(props) => props.src});
     background-size: cover;
     background-position-x: center;
     background-repeat: no-repeat;
