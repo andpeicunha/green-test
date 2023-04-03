@@ -163,6 +163,7 @@ export default function Main() {
                 onClick={() => handleClickAddFavorPersona(d.id, true)}
                 image={d.image}
                 iconActiveFavor={favoritePersona.find((p: any) => d.id === p.id && p.status) ? "active" : ""}
+                data-testid="card"
               />
             ))
           )

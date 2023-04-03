@@ -134,14 +134,20 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
+    .imgBigMedia {
+      top: 7.5rem !important;
+      visibility: visible;
+      height: 250px !important;
+      width: 250px !important;
+    }
     .nome {
-      top: 50vh;
+      top: 34rem;
     }
     .description {
-      top: 56vh;
+      top: 38rem;
     }
     .episode {
-      top: 65vh;
+      top: 46rem;
       grid-gap: 1rem 1.5%;
       grid-template-columns: repeat(14, 5.4%);
     }
@@ -149,10 +155,10 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     .nome {
-      top: 65vh;
+      top: 47.5rem;
     }
     .description {
-      top: 71vh;
+      top: 51.5rem;
     }
     .imgBigMedia {
       visibility: visible;
@@ -186,6 +192,7 @@ export const StImgDetails = styled.div<ThemedStyledProps<StyledComponentProps, a
     background-size: cover;
     background-position-x: center;
     background-repeat: no-repeat;
+    filter: blur(8px);
   }
 
   @media (min-width: 1024px) {

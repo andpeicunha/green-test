@@ -95,10 +95,10 @@ export default function Details() {
         </div>
 
         <div className="description">
-          {data.name} participou de <span id="strongBg">{data.episode.length}</span> episódio(s).
+          {data.name} participou de <span id="strongBg">{data.episode.length}</span> episódio(s), el
+          {g.replace("o", "e")} é {data.species === "Human" ? `Human${g}` : "Alien"}.
           <br />
-          Sua origem é <span id="strongBg">{data.location.name}.</span> El{g.replace("o", "e")} é um{g.replace("o", "")}{" "}
-          {data.species === "Human" ? `Human${g}` : "Alien"}
+          Sua origem é <span id="strongBg">{data.location.name}</span>
         </div>
 
         <div className="episode">

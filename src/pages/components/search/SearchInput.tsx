@@ -1,12 +1,18 @@
 import React from "react";
-
-import Input, { Wrapper, StyledMenu } from "./Styles";
-import { Button, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import StarIcon from "@mui/icons-material/Star";
 
-export default function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon, qtdePersonagens }: any) {
+import Input, { Wrapper } from "./Styles";
+
+interface Props {
+  onVariableChange: (value: string) => void;
+  filterFavoritePersona: () => void;
+  typeIcon: boolean;
+  qtdePersonagens: number;
+}
+
+function SearchInput({ onVariableChange, filterFavoritePersona, typeIcon, qtdePersonagens }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -57,3 +63,5 @@ export default function SearchInput({ onVariableChange, filterFavoritePersona, t
     </Wrapper>
   );
 }
+
+export default SearchInput;

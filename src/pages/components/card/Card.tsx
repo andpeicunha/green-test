@@ -31,7 +31,7 @@ export default function Card(props: ICardProps) {
   }
 
   return (
-    <CardMain>
+    <CardMain data-testid={`card-id-${i()}`}>
       <Link href={`/components/details/Details?id=${props.id}&status=${props.iconActiveFavor}`}>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -47,7 +47,7 @@ export default function Card(props: ICardProps) {
         </CardText>
       </Link>
 
-      <FavBt onClick={handleClick} className={props.iconActiveFavor}>
+      <FavBt onClick={handleClick} className={props.iconActiveFavor} data-testid="favorite-button">
         <StarIcon />
       </FavBt>
     </CardMain>
